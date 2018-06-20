@@ -1,0 +1,87 @@
+.s-grey {
+	color: #999;
+}
+
+.s-orange {
+	color: #F26C4F;
+}
+
+.thread {
+	border-bottom: 3px solid #C2D5E3;
+}
+
+.thread-detail {
+	display: flex;
+	border-bottom: 2px solid #C2D5E3;
+}
+
+.thread-main {
+	border: 1px solid #CDCDCD;
+}
+
+.thread-detail-left {
+	height: 40px;
+	width: 18%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #E5EDF2;
+}
+
+.thread-author,.thread-replies {
+	display: flex;
+}
+
+.thread-author-left, .thread-replies-left {
+	width: 18%;
+	background-color: #E5EDF2;
+}
+
+.thread-author-left > div, .thread-replies-left >div {
+	text-align: center;
+}
+
+.thread-author-right, .thread-replies-right {
+	width: 82%;
+	padding: 0px 30px 30px 30px;
+}
+
+.msg-info {
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px dashed #ddd;
+	color: #999;
+	font-size: 13px;
+}
+
+.author-name {
+	padding: 12px;
+	border-bottom: 1px dashed #CDCDCD;
+}
+
+.head-img > img{
+	margin-top: 10px;
+	border: 4px solid #fff;
+}
+
+.thread-detail-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 30px;
+}
+
+.user-info {
+	text-align: left !important;
+}
+
+.user-info > div {
+	margin-left: 20px;
+	color: #666;
+}
+
+.path {
+    padding: 12px 0px;
+}

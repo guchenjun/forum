@@ -1,0 +1,52 @@
+
+a {
+    text-decoration: none;
+}
+
+label {
+    font-size: 20px;
+    color: #666;
+}
+input {
+    border:1px solid #ddd;
+    height: 32px;
+    width: 200px;
+    font-size: 20px;
+}
+
+.link-login, .link-reg {
+    width: 72px;
+    height: 32px;
+    color: #666;
+    font-size: 20px;
+}
+
+.link-login, .link-login:hover, .link-reg:hover {
+    color: lightskyblue;
+}
+
+.show {
+	display: block;
+}
+
+.hidden {
+	display: none;
+}
+
+.index-cnt {
+    width: 300px;
+    margin: 0px auto;
+
+}
+
+.index-title {
+    font-size: 46px;
+    color: lightskyblue;
+    margin-top: 50px;
+}
+
+.login-reg {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}

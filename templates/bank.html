@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>银行插件</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="../../../static/css/common.css">
+    <link rel="stylesheet" href="../../../static/css/bank.css">
+</head>
+<body>
+<div class="cm-cnt">
+    <div class="g-hd">
+        <div class="nav-menu">
+            <div class="menu">
+                <div class="menu-left">
+                    <ul class="u1 nav-top">
+                        <li><a class="t" title="主站" href="#">
+                            简易论坛</a></li>
+                        <li><a class="t" title="画友" href="../../">首页</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle t" data-toggle="dropdown">
+                                插件 <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">银行</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-right">
+                    <ul class="nav-u2 nav-top">
+                        {% if user.is_authenticated %}
+                            <li class="user-select-info"><a href="#" class="t"><i
+                                    class="iconfont">&#xe6a7;</i>{{ user.username }}</a>
+                                <ul class="sub-nav">
+                                    <li><a href=""><span>Uid：</span><span>{{ user.id }}</span></a></li>
+                                    <li><a href=""><span>金币数：</span><span>{{ userProfile.coin }}</span></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../../logout/" class="t"><i class="iconfont">&#xe66d;</i>退出</a></li>
+                        {% else %}
+                            <li class="user-select-info"><a href="../../../" class="t"><i class="iconfont">&#xe6a7;</i>登录</a>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="g-bd">
+            <div class="path">
+                <a href="../../">首页</a>&nbsp;
+                <em> » </em>&nbsp;&nbsp;
+                <a href="./"> 银行</a>
+            </div>
+            <div style="width:900px;height:600px;background-color: rgba(0,0,0,0.2);margin:0px auto;border-radius: 10px;margin-bottom: 18px;display: flex;justify-content: flex-start;position:relative;box-shadow:4px 4px 4px rgba(0,0,0,0.5)"
+                 class="p-3">
+                <div class="user-info item"
+                     style="background-color: rgba(255,255,255,0.4);width:250px;border-radius: 8px;height:170px;">
+                    <div class="user-item item">用户信息</div>
+                    <div class="user-id"><span class="text">Uid: </span><span>{{ userProfile.id }}</span></div>
+                    <div class="user-name"><span class="text">用户名：</span><span>{{ userProfile.user.username }}</span></div>
+                    <div class="user-money"><span class="text">金币:</span><span>{{ userProfile.coin }} </span></div>
+                    <div class="user-blank-money"><span class="text">银行存款：</span><span>{{ userProfile.deposit }}</span></div>
+                </div>
+                <div class="blank-money item">
+                    <div class="blank-money-item item">
+                        存取款
+                    </div>
+                    {% csrf_token %}
+                    <div class="post-money p-3">
+                        <label for="post" style="font-weight: bold;font-family: DFKai-SB;font-size: 20px">存款金额：</label>
+                        <input type="text" id="post" class="input">
+                        <button class="btn btn-primary ml-3 deposit-btn" type="submit">存款</button>
+                    </div>
+                    <div class="get-money p-3">
+                        <label for="get" style="font-weight: bold;font-family: DFKai-SB;font-size: 20px">取款金额：</label>
+                        <input type="text" id="get" class="input">
+                        <button class="btn btn-primary ml-3 withdraw-btn" type="submit">取款</button>
+                    </div>
+                </div>
+                <div class="transfer-accounts item" style="position:absolute;right:16px;top:240px">
+                    <div class="transfer_accounts_item item">
+                        转账
+                    </div>
+                    <div class="transfer_money p-3">
+                        <table class="transfer-tbl">
+                            <tr>
+                                <th style="font-size:20px">对方用户名：</th>
+                                <th><input type="text" name="name" id="transfer_name" class="input"></th>
+                            </tr>
+                            <tr>
+                                <th style="font-size:20px">转账金额：</th>
+                                <th><input type="text" id="transfer_much" class="input"></th>
+                            </tr>
+                            <tr>
+                                <th style="font-size:20px">说明：</th>
+                                <th><textarea name="notes" id="notes" class="input" rows="3" cols="30" disabled="disabled">银行版本v1.0
+银行插件由本网站制定并保留所有的解释权和修改权 -2018年6月18日</textarea></th>
+                            </tr>
+                        </table>
+
+                        <button type="button" class="btn btn-primary transfer-btn" style="margin-left:250px;margin-top:10px">转账
+                        </button>
+                    </div>
+                </div>
+                <div class="rankings item" style="position:absolute;left:20px;top:200px;">
+                    <div class="rank_item item">
+                        排行榜
+                    </div>
+                    <table class="rank-tbl">
+                        <tr>
+                            <td>排名</td>
+                            <td>用户名</td>
+                            <td>存款</td>
+                        </tr>
+                        {% for user in user_obj %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ user.user.username }}</td>
+                            <td>{{ user.deposit }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="g-ft">
+            <div class="cm-copy_right">
+                <p>Copyright © 2018-2020 HZNU_软工162_8-505 版权所有 All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+    <script src="../../../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../static/js/bank.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>

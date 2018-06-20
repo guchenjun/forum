@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>主题</title>
+		<link rel="stylesheet" type="text/css" href="../../static/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../static/css/thread.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+		<link href="../../static/css/talk.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="cm-cnt">
+			<div class="g-hd">
+				<div class="nav-menu">
+	            <div class="menu">
+	                <div class="menu-left">
+	                    <ul class="u1 nav-top">
+	                        <li><a  class="t" title="主站" href="http://127.0.0.1:8000/forum/">
+	                        简易论坛</a></li>
+	                        <li><a class="t" title="画友" href="http://127.0.0.1:8000/forum/">首页</a></li>
+	                        <li class="dropdown">
+	                            <a href="#" class="dropdown-toggle t" data-toggle="dropdown">
+	                                插件 <b class="caret"></b>
+	                            </a>
+	                            <ul class="dropdown-menu">
+	                                <li><a href="../plugins/bank/">银行</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <div class="menu-right">
+	                    <ul class="nav-u2 nav-top">
+	                        {% if user.is_authenticated %}
+	                        <li class="user-select-info"><a href="#" class="t"><i class="iconfont">&#xe6a7;</i>{{ user.username }}</a>
+	                        <ul class="sub-nav">
+	                            <li><a href=""><span>Uid：</span><span>{{ user.id }}</span></a></li>
+	                            <li><a href=""><span>金币数：</span><span>{{ userProfile.coin }}</span></a></li>
+	                        </ul></li>
+	                        <li><a href="../logout/" class="t"><i class="iconfont">&#xe66d;</i>退出</a></li>
+	                        {% else %}
+	                        <li class="user-select-info"><a href="../" class="t"><i class="iconfont">&#xe6a7;</i>登录</a>
+	                        {% endif %}
+	                    </ul>
+	                </div>
+	            </div>
+			</div>
+			<div class="g-bd">
+                <div class="path">
+                    <a href="../">首页</a>
+                    <em>»</em>
+                    <a href="../f{{ bbs_obj.category }}/">{{ cat_obj.cat_name }}</a>
+                    <em>»</em>
+                    <a href="#">{{ bbs_obj.title }}</a>
+                </div>
+				<div class="thread-main">
+					<div class="thread thread-detail">
+						<div class="thread-detail-left">
+							<span class="s-grey">查看:</span>
+							<span class="s-orange">{{ bbs_obj.view_count }}</span>|
+							<span class="s-grey">回复:</span>
+							<span class="s-orange">{{ reply_obj.length }}</span>
+						</div>
+						<div class="thread-detail-title">{{ bbs_obj.title }}</div>
+					</div>
+					<!-- 发帖作者部分 -->
+					<div class="thread thread-author">
+						<div class="thread-author-left">
+							<div class="author-name">
+								<span>{{ bbs_obj.author }}</span>
+							</div>
+							<div class="head-img">
+								<img src="../../static/img/default-head.gif">
+							</div>
+							<div class="user-info">
+								<div class="uid">
+									<span>uid:
+									</span>
+									<span>{{ bbs_obj.author.id }}</span>
+								</div>
+								<div class="coin">
+									<span>金币:</span>
+									<span>{{ bbs_obj.author.coin }}</span>
+								</div>
+								<div class="posts">
+									<span>发帖数:</span>
+									<span>{{ bbs_obj.author.posts }}</span>
+								</div>
+								<div class="replies">
+									<span>回复数:</span>
+									<span>{{ bbs_obj.author.replies }}</span>
+								</div>
+							</div>
+						</div>
+						<div class="thread-author-right">
+                            <div class="msg-info">
+                                <div>
+                                    <img src="../../static/img/online_member.gif">
+                                发表于 {{ bbs_obj.created_at }}
+                                </div>
+                                <div>楼主</div>
+                            </div>
+							{% autoescape off %}
+                            {{ bbs_obj.content }}
+                            {% endautoescape %}
+						</div>
+					</div>
+					<!-- 回复人部分 -->
+                    {% for reply in reply_obj %}
+                        <div class="thread thread-replies">
+                            <div class="thread-replies-left">
+                                <div class="author-name">
+                                    <span>{{ reply.author.user.username }}</span>
+                                </div>
+                                <div class="head-img">
+                                    <img src="../../static/img/default-head.gif">
+                                </div>
+                                <div class="user-info">
+                                    <div class="uid">
+                                        <span>uid:
+                                        </span>
+                                        <span>{{ reply.author.id }}</span>
+                                    </div>
+                                    <div class="coin">
+                                        <span>金币:</span>
+                                        <span>{{ reply.author.coin }}</span>
+                                    </div>
+                                    <div class="posts">
+                                        <span>发帖数:</span>
+                                        <span>{{ reply.author.posts }}</span>
+                                    </div>
+                                    <div class="replies">
+                                        <span>回复数:</span>
+                                        <span>{{ reply.author.replies }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="thread-replies-right">
+                                <div class="msg-info">
+                                    <div>
+                                        <img src="../../static/img/online_member.gif">
+                                    回复于 {{ reply.created_at }}
+                                    </div>
+                                    <div>第{{ forloop.counter }}楼</div>
+                                </div>
+                                {% autoescape off %}
+                                    {{ reply.content }}
+                                {% endautoescape %}
+                            </div>
+                        </div>
+                    {% endfor %}
+				</div>
+
+				<div class="talk_con">
+					<div class="talk_control" >
+						<div class="emotion_tab tab_visible" >
+							<table border="1">
+								<tr>
+									<td>
+										<img src="../../static/arclist/1.gif" onclick="f(1)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/2.gif" onclick="f(2)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/3.gif" onclick="f(3)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/4.gif" onclick="f(4)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/5.gif" onclick="f(5)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/6.gif" onclick="f(6)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/7.gif" onclick="f(7)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/8.gif" onclick="f(8)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/9.gif" onclick="f(9)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/10.gif" onclick="f(10)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/11.gif" onclick="f(11)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/12.gif" onclick="f(12)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/13.gif" onclick="f(13)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/14.gif" onclick="f(14)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/15.gif" onclick="f(15)" title="微笑">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="../../static/arclist/16.gif" onclick="f(16)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/17.gif" onclick="f(17)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/18.gif" onclick="f(18)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/19.gif" onclick="f(19)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/20.gif" onclick="f(20)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/21.gif" onclick="f(21)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/22.gif" onclick="f(22)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/23.gif" onclick="f(23)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/24.gif" onclick="f(24)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/25.gif" onclick="f(25)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/26.gif" onclick="f(26)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/27.gif" onclick="f(27)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/28.gif" onclick="f(28)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/29.gif" onclick="f(29)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/30.gif" onclick="f(30)" title="微笑">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="../../static/arclist/31.gif" onclick="f(31)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/32.gif" onclick="f(32)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/33.gif" onclick="f(33)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/34.gif" onclick="f(34)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/35.gif" onclick="f(35)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/36.gif" onclick="f(36)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/37.gif" onclick="f(37)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/38.gif" onclick="f(38)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/39.gif" onclick="f(39)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/40.gif" onclick="f(40)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/41.gif" onclick="f(41)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/42.gif" onclick="f(42)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/43.gif" onclick="f(43)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/44.gif" onclick="f(44)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/45.gif" onclick="f(45)" title="微笑">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="../../static/arclist/46.gif" onclick="f(46)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/47.gif" onclick="f(47)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/48.gif" onclick="f(48)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/49.gif" onclick="f(49)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/50.gif" onclick="f(50)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/51.gif" onclick="f(51)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/52.gif" onclick="f(52)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/53.gif" onclick="f(53)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/54.gif" onclick="f(54)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/55.gif" onclick="f(55)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/56.gif" onclick="f(56)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/57.gif" onclick="f(57)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/58.gif" onclick="f(58)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/59.gif" onclick="f(59)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/60.gif" onclick="f(60)" title="微笑">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<img src="../../static/arclist/61.gif" onclick="f(61)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/62.gif" onclick="f(62)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/63.gif" onclick="f(63)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/64.gif" onclick="f(64)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/65.gif" onclick="f(65)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/66.gif" onclick="f(66)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/67.gif" onclick="f(67)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/68.gif" onclick="f(68)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/69.gif" onclick="f(69)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/70.gif" onclick="f(70)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/71.gif" onclick="f(71)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/72.gif" onclick="f(72)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/73.gif" onclick="f(73)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/74.gif" onclick="f(74)" title="微笑">
+									</td>
+									<td>
+										<img src="../../static/arclist/75.gif" onclick="f(75)" title="微笑">
+									</td>
+								</tr>
+							</table>
+						</div>
+						<ul>
+							<li class="text_B" title="加粗" onclick="fontw()"><span><b>B</b></span></li>
+							<li class="text_xieti" ="斜体" onclick="xieti()"><span><b><i>T</i></b></span></li>
+							<li class="text_decoration" title="下划线" onclick="underLine()"><span><b>A</b></span></li>
+							<li class="emotion " title="表情" ><svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-biaoqing1"></use>
+							</svg></li>
+							<input type="file" id="files" accept="image/*" multiple="multiple" style="display:none;">
+							<li class="picture" title="图片"><svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-tupian1"></use>
+							</svg></li>
+							<li class="chexiao" title="撤销" onclick="chexiao()"><svg class="icon1" aria-hidden="true">
+								<use xlink:href="#icon-chexiao1"></use>
+							</svg></li>
+							<li onclick="f1()" title="清空"><svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-lajitong"></use>
+							</svg></li>
+						</ul>
+					</div>
+
+                        <div class="thread-id" style="display: none;">{{ bbs_obj.id }}</div>
+					<div class="p-2">
+                        {% csrf_token %}
+						<div class="talk_box" id="saytext" name="saytext" contenteditable="true">
+						</div>
+					</div>
+					<div class="talk_back">
+						<button type="button" class="btn btn-primary sub_btn mt-1 reply-btn">回复</button>
+					</div>
+					<div class="talk_bottom">
+					</div>
+				</div>
+			</div>
+			<div class="g-ft">
+				<div class="cm-copy_right">
+					<p>Copyright © 2018-2020 HZNU_软工162_8-505 版权所有 All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../static/js/iconfont.js"></script>
+		<script type="text/javascript" src="../../static/js/talk.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	</body>
+</html>

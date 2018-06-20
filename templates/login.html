@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册页面</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <div class="login-cnt">
+       <form class="login-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+			<table style="text-align: center;">
+				<tr>
+					<td><label for="">帐号</label></td>
+					<td><input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td><label for="">密码</label></td>
+					<td><input type="text" name="password"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input class="login-btn" type="button" value="登录"></td>
+				</tr>
+			</table>
+       </form>
+        <a href="/reg/">注册</a>
+    </div>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/index.js"></script>
+</body>
+</html>

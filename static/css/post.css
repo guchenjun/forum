@@ -1,0 +1,10 @@
+.post-title{
+    padding: 0px 15px;
+}
+
+.post-title-ipt {
+    width: 300px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    height: 32px;
+}

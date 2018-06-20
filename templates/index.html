@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册登录</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+</head>
+<body>
+    <canvas id="Mycanvas" style="position:absolute;z-index: -1;left: 0px;top: 0px;"></canvas>
+    <div class="index-cnt">
+        <div class="index-title">简易论坛</div>
+        <div class="login-reg">
+            <a href="#" class="link-login">登录</a>
+            <a href="#" class="link-reg">注册</a>
+        </div>
+        <div class="login-cnt show">
+           <form class="login-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table style="text-align: center;">
+                    <tr>
+                        <td><label for="">帐号</label></td>
+                        <td><input type="text" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">密码</label></td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input class="login-btn" type="button" value="登录"></td>
+                    </tr>
+                </table>
+           </form>
+        </div>
+        <div class="reg-cnt hidden">
+            <form class="reg-form" method="POST">
+                {% csrf_token %}
+                <table style="text-align: center;">
+                    <tr>
+                        <td><label for="">帐号</label></td>
+                        <td><input type="text" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">密码</label></td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input class="reg-btn" type="button" value="注册"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/login-background.js"></script>
+    <script src="../static/js/index.js"></script>
+</body>
+</html>

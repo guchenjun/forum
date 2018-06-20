@@ -1,0 +1,62 @@
+cite{
+	display: block;
+}
+tr{
+	border-width: 1px 0 1px 0;
+	border-style: solid;
+	border-color: #C2D5E3;
+}
+a{
+text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+.tz-head{
+	background-color: #eee;
+}
+.tz-span,.tz-em{
+	color: #999;
+}
+.tz{
+	border-collapse:collapse;
+	border: solid 1px #C2D5E3;
+	margin: 0px auto;
+}
+.tz-icon{
+	padding-left: 10px;
+	padding-right: 5px;
+}
+.tz-content{
+	width: 500px;
+	text-align: left;
+}
+.tz-author{
+	font:12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+	width: 150px;
+}
+.tz-reply{
+	width: 100px;
+}
+
+.path {
+	width: 93%;
+    padding: 20px;
+	margin: 0px auto;
+}
+
+.post {
+    float: right;
+    padding: 5px 15px;
+    background-color: lightskyblue;
+    border-radius: 5px 10px;
+}
+
+.post:hover {
+    background-color: #aaa;
+}
+
+table {
+    width: 90%;
+}

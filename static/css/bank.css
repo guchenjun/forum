@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors Your Name (you@example.org)
+ * @date    2018-06-06 11:35:58
+ * @version $Id$
+ */
+ *{
+ 	user-select: none;
+ 	font-family:DFKai-SB;
+ }
+
+.text{
+	font-weight: bold;
+	font-family: DFKai-SB;
+	font-size: 20px
+}
+
+.user-info .user-item{
+	font-weight: bold;
+	font-family: DFKai-SB;
+	font-size: 25px;
+	background-color: rgba(	255, 127, 0,0.5);
+	border-radius: 8px;
+	text-align: center;
+}
+.blank-money{
+	width:600px;
+	height:200px;
+	background-color: rgba(255,255,255,0.4);
+	margin-left:20px;
+	border-radius: 8px
+}
+.blank-money .blank-money-item{
+	font-weight: bold;
+	font-family: DFKai-SB;
+	font-size: 25px;
+	background-color: rgba(	255, 127, 0,0.5);
+	border-radius: 8px;
+	text-align: center;
+}
+
+.input{
+	border-radius:5px;
+	width:350px;
+	background-color:rgba(255,255,255,0.7)
+}
+.transfer-accounts{
+	width:600px;
+	height:300px;
+	background-color: rgba(255,255,255,0.4);
+	border-radius:10px
+}
+.transfer-accounts .transfer_accounts_item{
+	font-weight: bold;
+	font-family: DFKai-SB;
+	font-size: 25px;
+	background-color: rgba(	255, 127, 0,0.5);
+	border-radius: 8px;
+	text-align: center;
+}
+
+.rankings{
+	background-color:rgba(255,255,255,0.4);
+	width:250px;
+	height:340px;
+	border-radius:8px;
+}
+.rank_item{
+	font-weight: bold;
+	font-size: 25px;
+	background-color: rgba(	255, 127, 0,0.5);
+	border-radius: 8px;
+	text-align: center;
+}
+.item{
+	box-shadow:2px 2px 2px rgba(0,0,0,0.5)
+}
+/*table tr{
+	height:50px
+}*/
+
+.transfer-tbl tr {
+	height: 50px;
+}
+
+.rank-tbl {
+	text-align: center;
+}
+
+.rank-tbl  td {
+	width: 33.33%;
+}
+
+.path {
+    height: 40px;
+    width: 94%;
+    margin: 0px auto;
+    display:  flex;
+    align-items: center;
+}

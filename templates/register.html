@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/index.css">
+</head>
+<body>
+	<div class="reg-cnt">
+		<form class="reg-form" method="POST">
+            {% csrf_token %}
+			<table style="text-align: center;">
+				<tr>
+					<td><label for="">帐号</label></td>
+					<td><input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td><label for="">密码</label></td>
+					<td><input type="text" name="password"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input class="reg-btn" type="button" value="注册"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/index.js"></script>
+</body>
+</html>

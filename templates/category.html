@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{{ cat_obj.cat_name }}</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="../../static/css/common.css">
+		<link rel="stylesheet" type="text/css" href="../../static/css/category.css">
+	</head>
+	<body>
+		<div class="cm-cnt">
+			<div class="g-hd">
+				<div class="nav-menu">
+	            <div class="menu">
+	                <div class="menu-left">
+	                    <ul class="u1 nav-top">
+	                        <li><a  class="t" title="主站" href="http://127.0.0.1:8000/forum/">
+	                        简易论坛</a></li>
+	                        <li><a class="t" title="画友" href="http://127.0.0.1:8000/forum/">首页</a></li>
+	                        <li class="dropdown">
+	                            <a href="#" class="dropdown-toggle t" data-toggle="dropdown">
+	                                插件 <b class="caret"></b>
+	                            </a>
+	                            <ul class="dropdown-menu">
+	                                <li><a href="../plugins/bank/">银行</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <div class="menu-right">
+	                    <ul class="nav-u2 nav-top">
+	                        {% if user.is_authenticated %}
+	                        <li class="user-select-info"><a href="#" class="t"><i class="iconfont">&#xe6a7;</i>{{ user.username }}</a>
+	                        <ul class="sub-nav">
+	                            <li><a href=""><span>Uid：</span><span>{{ user.id }}</span></a></li>
+	                            <li><a href=""><span>金币数：</span><span>{{ userProfile.coin }}</span></a></li>
+	                        </ul></li>
+	                        <li><a href="../logout/" class="t"><i class="iconfont">&#xe66d;</i>退出</a></li>
+	                        {% else %}
+	                        <li class="user-select-info"><a href="../" class="t"><i class="iconfont">&#xe6a7;</i>登录</a>
+	                        {% endif %}
+	                    </ul>
+	                </div>
+	            </div>
+			</div>
+			<div class="g-bd">
+                <div class="path">
+                    <a href="../">首页</a>
+                    <em>»</em>
+                    <a href="./">{{ cat_obj.cat_name }}</a>
+
+                    <div class="post">
+                        <a href="../p{{ cat_obj.cat_id }}/post/">发帖</a>
+                    </div>
+                </div>
+				<table class="tz">
+					<tr class="tz-head">
+						<td></td>
+						<td>内容</td>
+						<td>作者</td>
+						<td>查看</td>
+					</tr>
+					{% for bbs in bbs_list %}
+						<tr>
+							<td class="tz-icon">
+								<a href="#"><img src="folder_new.gif" alt=""></a>
+							</td>
+							<td class="tz-content">
+								<a href="../r{{ bbs.id }}/">{{ bbs.title }}</a>
+							</td>
+							<td class="tz-author">
+								<cite>
+								<a href="#">{{ bbs.author }}</a>
+								</cite>
+								<em>
+								<span class="tz-author-time  .tz-span">{{ bbs.created_at }}</span>
+								</em>
+							</td>
+							<td class="tz-reply">
+								<em class="tz-em">{{ bbs.view_count }}</em>
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+			<div class="g-ft">
+				<div class="cm-copy_right">
+					<p>Copyright © 2018-2020 HZNU_软工162_8-505 版权所有 All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../static/js/jquery-3.3.1.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    </body>
+</html>

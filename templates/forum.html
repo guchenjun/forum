@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>社区首页</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/bk.css">
+</head>
+<body>
+    <div class="cm-cnt">
+        <div class="g-hd">
+            <div class="nav-menu">
+            <div class="menu">
+                <div class="menu-left">
+                    <ul class="u1 nav-top">
+                        <li><a  class="t" title="主站" href="#">
+                        简易论坛</a></li>
+                        <li><a class="t" title="画友" href="#">首页</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle t" data-toggle="dropdown">
+                                插件 <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="./plugins/bank/">银行</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-right">
+                    <ul class="nav-u2 nav-top">
+                        {% if user.is_authenticated %}
+                        <li class="user-select-info"><a href="#" class="t"><i class="iconfont">&#xe6a7;</i>{{ user.username }}</a>
+                        <ul class="sub-nav">
+                            <li><a href=""><span>Uid：</span><span>{{ user.id }}</span></a></li>
+                            <li><a href=""><span>金币数：</span><span>{{ userProfile.coin }}</span></a></li>
+                        </ul></li>
+                        <li><a href="./logout/" class="t"><i class="iconfont">&#xe66d;</i>退出</a></li>
+                        {% else %}
+                        <li class="user-select-info"><a href="../" class="t"><i class="iconfont">&#xe6a7;</i>登录</a>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="g-bd">
+            <div class="container">
+                <div class="row bk-title">
+                    <div class="col-lg-11">
+                        <a href="#">论坛娱乐休闲区</a>
+                    </div>
+                    <div class="col-lg-1">
+                        <!-- 图标 -->
+                        <img src="../static/img/fold.gif" alt="fold" class="bk-img-fold-1 bk-img-fold">
+                    </div>
+                </div>
+                <div class="row bk-content bk-content-1">
+                    <div class="col-lg-6 bk-content-item bk-content-left">
+                        <a href="#">
+                            <img src="../static/img/xrbd.jpg" alt="新人报道">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f01/">新人报道</a>
+                            </td>
+                        </dl>
+                    </div>
+                    <div class="col-lg-6 bk-content-item bk-content-right">
+                        <a href="#">
+                            <img src="../static/img/xlgs.jpg" alt="闲聊灌水">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f02/">闲聊灌水</a>
+                            </td>
+                        </dl>
+                    </div>
+                </div>
+                <div class="row bk-title bk-title-b">
+                    <div class="col-lg-11">
+                        <a href="#">游戏专区</a>
+                    </div>
+                    <div class="col-lg-1">
+                        <!-- 图标 -->
+                        <img src="../static/img/fold.gif" alt="fold" class="bk-img-fold-2 bk-img-fold">
+                    </div>
+                </div>
+                <div class="row bk-content bk-last  bk-content-2">
+                    <div class="col-lg-6 bk-content-item">
+                        <a href="#">
+                            <img src="../static/img/yxlm.jpg" alt="LOL">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f11/">英雄联盟</a>
+                            </td>
+                        </dl>
+                    </div>
+                    <div class="col-lg-6 bk-content-item">
+                        <a href="#">
+                            <img src="../static/img/wzry.jpg" alt="王者荣耀">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f12/">王者荣耀</a>
+                            </td>
+                        </dl>
+                    </div>
+                    <div class="col-lg-6 bk-content-item bk-content-dashed">
+                        <a href="#">
+                            <img src="../static/img/bh3.jpg" alt="崩坏3" style="border-radius: 5px;">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f13/">崩坏三</a>
+                            </td>
+                        </dl>
+                    </div>
+                    <div class="col-lg-6 bk-content-item bk-content-dashed">
+                        <a href="#">
+                            <img src="../static/img/discussyellow.gif" alt="">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f14/">...</a>
+                            </td>
+                        </dl>
+                    </div>
+                    
+                </div>
+                <div class="row bk-title bk-title-b">
+                    <div class="col-lg-11">
+                        <a href="#">站务处理</a>
+                    </div>
+                    <div class="col-lg-1">
+                        <!-- 图标 -->
+                        <img src="../static/img/fold.gif" alt="fold" class="bk-img-fold-3 bk-img-fold">
+                    </div>
+                </div>
+                <div class="row bk-content bk-last  bk-content-3">
+                    <div class="col-lg-6 bk-content-item">
+                        <a href="#">
+                            <img src="../static/img/sqbz.gif" alt="版主申请">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f21/">版主申请</a>
+                            </td>
+                        </dl>
+                    </div>
+                    <div class="col-lg-6 bk-content-item">
+                        <a href="#">
+                            <img src="../static/img/wgjy.gif" alt="违规禁言">
+                        </a>
+                        <dl>
+                            <td>
+                                <a href="./f22/">违规禁言</a>
+                            </td>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="g-ft">
+            <div class="cm-copy_right">
+                <p>Copyright © 2018-2020 HZNU_软工162_8-505 版权所有 All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="../static/js/bk.js"></script>
+</body>
+</html>

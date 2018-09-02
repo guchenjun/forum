@@ -5,14 +5,28 @@
 
 ## 开发环境
 IDE：PyCharm、Sublime Text 3  
-语言：Python、Html5、Css、Javascript  
-部署服务器环境：Apache Tomcat  
+语言：Python、Html5、Css、Javascript   
 数据库：Mysql  
+部署服务器环境：Apache24  
+### 使用说明
 > 本项目采用Django框架开发，故还需安装两个库、Django、mysqlclient
 ``` bash
 pip install django
 pip install mysqlclient
 ```
+1.在mysql数据库手动创建forum数据库  
+2.在forum/settings.py中DATABASES配置本地数据库帐号密码  
+3.然后在PyCharm中导航栏Tools->Run manage.py Task...  
+4.在打开的控制台输入如下命令创建数据表(其中app_name为空代表所有app,我这里为空)  
+```
+makemigrations app_name
+migrate app_nage
+```
+5.登录mysql,导入板块名sql文件(在apps文件夹下的categoryname.sql)  
+```
+mysql> source categoryname.sql
+```
+6.在PyCharm中运行Django即可(或在工程目录下命令行运行`python manager.py runserver 0.0.0.0:8000`)  
 
 ## 论坛功能分类
   - [首页](#首页)：登录、注册  

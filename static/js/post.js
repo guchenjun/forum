@@ -9,8 +9,8 @@ function init() {
             error:function (e) {
                 alert("发帖失败")
             },
-            success:function (e) {
-                alert("发帖成功");
+            success:function (data) {
+                alert(data);
                 window.location.href=document.referrer;
             }
         })

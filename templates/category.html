@@ -14,9 +14,9 @@
 	            <div class="menu">
 	                <div class="menu-left">
 	                    <ul class="u1 nav-top">
-	                        <li><a  class="t" title="主站" href="http://127.0.0.1:8000/forum/">
+	                        <li><a  class="t" title="主站" href="../">
 	                        简易论坛</a></li>
-	                        <li><a class="t" title="画友" href="http://127.0.0.1:8000/forum/">首页</a></li>
+	                        <li><a class="t" title="画友" href="../">首页</a></li>
 	                        <li class="dropdown">
 	                            <a href="#" class="dropdown-toggle t" data-toggle="dropdown">
 	                                插件 <b class="caret"></b>
@@ -37,7 +37,7 @@
 	                        </ul></li>
 	                        <li><a href="../logout/" class="t"><i class="iconfont">&#xe66d;</i>退出</a></li>
 	                        {% else %}
-	                        <li class="user-select-info"><a href="../" class="t"><i class="iconfont">&#xe6a7;</i>登录</a>
+	                        <li class="user-select-info"><a href="../../" class="t"><i class="iconfont">&#xe6a7;</i>登录</a>
 	                        {% endif %}
 	                    </ul>
 	                </div>
@@ -56,7 +56,7 @@
 				<table class="tz">
 					<tr class="tz-head">
 						<td></td>
-						<td>内容</td>
+						<td>主题</td>
 						<td>作者</td>
 						<td>查看</td>
 					</tr>
@@ -70,7 +70,7 @@
 							</td>
 							<td class="tz-author">
 								<cite>
-								<a href="#">{{ bbs.author }}</a>
+                                    <a href="#">{{ bbs.author }}</a>
 								</cite>
 								<em>
 								<span class="tz-author-time  .tz-span">{{ bbs.created_at }}</span>
@@ -84,12 +84,17 @@
 				</table>
 			</div>
 			<div class="g-ft">
+                <div class="ft-time">
+                    <canvas id="canvas"></canvas>
+                </div>
 				<div class="cm-copy_right">
 					<p>Copyright © 2018-2020 HZNU_软工162_8-505 版权所有 All Rights Reserved.</p>
 				</div>
 			</div>
 		</div>
 		<script src="../../static/js/jquery-3.3.1.min.js"></script>
+        <script src="../../static/js/digit.js"></script>
+        <script src="../../static/js/time.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 

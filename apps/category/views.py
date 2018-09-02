@@ -69,7 +69,7 @@ def post(request, bbs_id):
             # 金币+5、发帖数+1
             UserProfile.objects.filter(user=request.user).update(coin=author.coin + 5)
             UserProfile.objects.filter(user=request.user).update(posts=author.posts + 1)
-            return HttpResponse("发帖成功")
+            return HttpResponse("发帖成功\n金币+5")
 
 
 def reply(request):
@@ -85,5 +85,5 @@ def reply(request):
             author=author,
             thread_id=request.POST.get("thread_id")
         )
-        return HttpResponse("回复成功")
+        return HttpResponse("回复成功\n金币+1")
     return HttpResponse("Bad request")

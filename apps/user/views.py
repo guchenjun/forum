@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import UserProfile
+from apps.category.models import BBS
 from .forms import RegisterForm, LoginForm
 
 # Create your views here.
@@ -51,8 +52,11 @@ def login(request):
 
 
 def forum(request):
+    users_info = UserProfile.objects.last()
+    users_info.user_count = UserProfile.objects.count()
+    users_info.thread_count = BBS.objects.count()
     if request.user.id:
         userProfile = UserProfile.objects.get(user_id=request.user.id)
-        return render(request, "forum.html",{'userProfile': userProfile})
+        return render(request, "forum.html", {'userProfile': userProfile, 'users_info': users_info})
     else:
-        return render(request, "forum.html")
+        return render(request, "forum.html",{"users_info": users_info})
